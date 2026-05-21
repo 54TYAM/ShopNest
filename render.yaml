@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: shopnest
+    env: python
+    plan: starter
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash -lc 'export API_HOST=0.0.0.0; export API_PORT=$PORT; uvicorn src.api.main:app --host 0.0.0.0 --port $PORT'
+    envVars:
+      - key: API_HOST
+        value: "0.0.0.0"
+      - key: LOG_LEVEL
+        value: "INFO"
